@@ -1,7 +1,7 @@
-from BasePage import BasePage
+from .basePage import BasePage
 from selenium.webdriver.common.by import By
 
-class MainPage(BasePage):
+class Login(BasePage):
     INPUT_USERNAME = (By.XPATH, '//input[@name="username"]')
     INPUT_PASSWORD = (By.XPATH, '//input[@name="password"]')
     BTN_LOGIN = (By.XPATH, '//button[text()="Войти"]')

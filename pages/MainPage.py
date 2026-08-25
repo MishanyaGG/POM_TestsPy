@@ -1,4 +1,4 @@
-from BasePage import BasePage
+from basePage import BasePage
 from selenium.webdriver.common.by import By
 
 class MainPage(BasePage):
