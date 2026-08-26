@@ -55,27 +55,24 @@ class Categories:
                 db.connection.disconnect()
         
     @staticmethod
-    def update_category(self, category_id, **kwargs):
+    def update_category(category_id, **kwargs):
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)            
                         
             try:
                 updates = []
-                values = []
                             
-                for key, value in kwargs.items():
+                for key,value in kwargs.items():
                     if key in ['name', 'slug']:
-                        updates.append(f"{key} = %s")
-                        values.append(value)
+                        updates.append(f'{key} = "{value}"')
                     
                     if not updates:
                         return False
                     
-                query = f"UPDATE {TABLE_NAME} SET {', '.join(updates)} WHERE id = %s"
-                values.append(category_id)            
+                query = f"UPDATE {TABLE_NAME} SET {', '.join(updates)} WHERE id = {category_id}"
                             
-                cursor.execute(query, values)
+                cursor.execute(query)
                 db.connection.commit()
                 return cursor.rowcount > 0
             except mysql.connector.Error as e:
