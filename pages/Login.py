@@ -24,6 +24,7 @@ class Login(BasePage):
     INPUT_PASSWORD = (By.XPATH, '//input[@name="password"]')
     BTN_LOGIN = (By.XPATH, '//button[text()="Войти"]')
     BTN_MAIN_PAGE = (By.XPATH, '//button[text()="Главная страница"]')
+    ALERT_DANGER = (By.XPATH, '//div[text()="Неверный логин или пароль"]')
     
     def enter_username(self, username:str):
         """
@@ -69,6 +70,9 @@ class Login(BasePage):
         self.enter_password(password)
         self.click_btn_login()    
         time.sleep(0.5)
+        
+    def get_alert_danger(self):
+        return self.find_element(self.ALERT_DANGER).text
         
     
         
