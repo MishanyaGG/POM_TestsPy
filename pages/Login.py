@@ -1,5 +1,6 @@
 from .basePage import BasePage
 from selenium.webdriver.common.by import By
+import time
 
 class Login(BasePage):
     """
@@ -11,6 +12,7 @@ class Login(BasePage):
         BTN_MAIN_PAGE (tuple): Кнопка Главная страница
         
     Methods:
+    
         enter_username(username:str): Ввод значения в поле Логина
         enter_password(self, password:str): Ввод значения в поле Пароль
         click_btn_login(): Клик по кнопке Войти
@@ -66,6 +68,7 @@ class Login(BasePage):
         self.enter_username(username)
         self.enter_password(password)
         self.click_btn_login()    
+        time.sleep(0.5)
         
     
         

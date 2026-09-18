@@ -3,6 +3,10 @@ from selenium import webdriver
 
 @pytest.fixture(scope="function")
 def driver():
+    """
+    Получение драйвера Chrome
+    """
+    
     driver = webdriver.Chrome()
     driver.maximize_window()
     yield driver
