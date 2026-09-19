@@ -4,8 +4,25 @@ from database import MySQLDataBase
 TABLE_NAME = 'categories'
 
 class Categories:
+    """
+    Класс таблицы Categories
+    
+    Methods:
+        
+        select_all_categories(): Получение всех категорий из таблицы
+        select_category_by_id(id:int): Получение категории по id
+        create_category(name:str,slug:str): Создание новой категории
+        update_category(category_id:int, **kwargs:list): Обновление категории
+        delete_category(category_id:int): Удаление категории
+    """
+    
+    
     @staticmethod
     def select_all_categories():
+        """
+        Получение всех категорий из таблицы
+        """
+        
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)
@@ -20,7 +37,14 @@ class Categories:
                 db.connection.close()
                 
     @staticmethod
-    def select_category_by_id(id):
+    def select_category_by_id(id:int):
+        """
+        Получение категории по id
+        
+        Args:
+            id: ID категории
+        """
+        
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)
@@ -35,7 +59,14 @@ class Categories:
                 db.connection.disconnect()
 
     @staticmethod
-    def create_category(name,slug):
+    def create_category(name:str,slug:str):
+        """
+        Создание новой категории
+        Args:
+            name: Название категории
+            slug: Англ версия названия
+        """
+        
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)            
@@ -55,7 +86,15 @@ class Categories:
                 db.connection.disconnect()
         
     @staticmethod
-    def update_category(category_id, **kwargs):
+    def update_category(category_id:int, **kwargs:list):
+        """
+        Обновление категории
+        
+        Args:
+            category_id: ID категории
+            **kwargs: список полей для изменения
+        """
+        
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)            
@@ -84,7 +123,14 @@ class Categories:
                 db.connection.disconnect()
         
     @staticmethod
-    def delete_category(category_id):
+    def delete_category(category_id:int):
+        """
+        Удаление категории
+        
+        Args:
+            category_id: ID категории
+        """
+        
         db = MySQLDataBase()
         if db.connection:
             cursor = db.connection.cursor(dictionary=True)            
