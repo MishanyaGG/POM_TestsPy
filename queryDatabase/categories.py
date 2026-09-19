@@ -1,5 +1,5 @@
 import mysql.connector
-from database import MySQLDataBase
+from .database import MySQLDataBase
 
 TABLE_NAME = 'categories'
 
@@ -57,6 +57,26 @@ class Categories:
             finally:
                 cursor.close()
                 db.connection.disconnect()
+                
+    @staticmethod
+    def isExistCategoryByName(name:str):
+        db = MySQLDataBase()
+        if db.connection:
+            cursor = db.connection.cursor(dictionary=True)
+                    
+            try:
+                cursor.execute(f"SELECT * FROM {TABLE_NAME} WHERE name = '{name}'")
+                row = cursor.fetchone()
+            except mysql.connector.Error as e:
+                print(f"Ошибка запроса {e}")
+            finally:
+                cursor.close()
+                db.connection.disconnect()
+                
+            if  row is None:
+                return False
+
+            return True
 
     @staticmethod
     def create_category(name:str,slug:str):
